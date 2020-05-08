@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="app.js"></script>
+
+    <title>Blog Editor</title>
+  </head>
+  <body>
+
+    <div>
+      <h3 class="text-center my-3">Blog Editor</h3>
+      <nav class="navbar navbar-expand-lg bg-light justify-content-center sticky-top" id="toolbar">
+        <ul class="navbar-nav p-2">
+            <li id="undo" class="nav-item text-center"><a href="#" data-command="undo" class=""><i class="fa fa-undo"></i></a></li>
+            <li id="redo" class="nav-item text-center"><a href="#" data-command="redo" class=""><i class="fa fa-repeat"></i></a></li>
+            <li id="bold" class="nav-item text-center"><a href="#" data-command="bold" class=""><i class="fa fa-bold"></i></a></li>
+            <li id="italic" class="nav-item text-center"><a href="#" data-command="italic" class=""><i class="fa fa-italic"></i></a></li>
+            <li id="underline" class="nav-item text-center"><a href="#" data-command="underline" class=""><i class="fa fa-underline"></i></a></li>
+            <li id="strikethrough" class="nav-item text-center"><a href="#" data-command="strikeThrough" class=""><i class="fa fa-strikethrough"></i></a></li>
+            <li id="h1" class="nav-item text-center"><a href="#" data-command="H1" class="">H1</a></li>
+            <li id="h2" class="nav-item text-center"><a href="#" data-command="H2" class="">H2</a></li>
+            <li id="justifyleft" class="nav-item text-center"><a href="#" data-command="justifyLeft" class=""><i class="fa fa-align-left"></i></a></li>
+            <li id="justifycenter" class="nav-item text-center"><a href="#" data-command="justifyCenter" class=""><i class="fa fa-align-center"></i></a></li>
+            <li id="justifyright" class="nav-item text-center"><a href="#" data-command="justifyRight" class=""><i class="fa fa-align-right"></i></a></li>
+            <li id="superscript" class="nav-item text-center"><a href="#" data-command="superscript" class=""><i class="fa fa-superscript"></i></a></li>
+            <li id="subscript" class="nav-item text-center"><a href="#" data-command="subscript" class=""><i class="fa fa-subscript"></i></a></li>
+            <li id="indent" class="nav-item text-center"><a href="#" data-command="indent" class=""><i class="fa fa-indent"></i></a></li>
+            <li id="outdent" class="nav-item text-center"><a href="#" data-command="outdent" class=""><i class="fa fa-outdent"></i></a></li>
+            <li id="insertunorderedlist" class="nav-item text-center"><a href="#" data-command="insertUnorderedList" class=""><i class="fa fa-list-ul"></i></a></li>
+            <li id="insertorderedlist" class="nav-item text-center"><a href="#" data-command="insertOrderedList" class=""><i class="fa fa-list-ol"></i></a></li>
+        </ul>
+      </nav>
+    </div>
+    
+    <div class="container justify-content-center">
+        <div class="form-inline my-2">
+          <label class="mr-2">Title of Post</label>
+          <input id="title" class="w-75" type="text">
+        </div>
+
+        <div class="form-inline my-2">
+          <label class="mr-2">Date</label>
+          <input id="date" type="date">
+        </div>
+
+        <div class="my-2">
+          <script>
+            function showImage(input) {
+              console.log("Show image");
+              if (input.files && input.files[0]) {
+                  var reader = new FileReader();
+                  reader.onload = function (e) {
+                    $('#image').attr('src', e.target.result);
+                  }
+                  reader.readAsDataURL(input.files[0]);
+              }
+            }
+          </script>
+          <img id="image" style="height: 100px;">
+          <div class="form-inline">
+            <label class="mr-2">Add banner image</label>
+            <input id="file" type="file" accept="image/*" onchange="showImage(this)">
+          </div>
+        </div>
+
+        <div class="">
+            <h4>Blog Content</h4>
+            <div class="w-100 border mb-2" id="editor" style="height: 400px; overflow: auto;" contenteditable>
+                <p>Your content goes here</p>
+            </div>
+        </div>
+        <button class="float-right btn btn-primary mb-2" onclick="echo()">Publish</button>
+    </div>
+
+    <div class="my-3 container" id="echodiv">
+        <h3 class="text-center">Echo Div</h3>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script>
+        window.onload = execute();
+    </script>
+  </body>
+</html>
